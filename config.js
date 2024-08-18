@@ -10,7 +10,7 @@ import moment from 'moment-timezone'
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.owner = [
-  ['51936732723', 'SystemX⁩', true],
+  ['51936732723', '𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑 𝐗⁩', true],
   ['51936732723'],
   ['51936732723'],
   ['51936732723'],
@@ -25,12 +25,12 @@ global.prems = []
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.packname = ``
-global.author = '{\n "bot": {\n   "name": "SYSTEM X",\n     "author": "SystemX",\n   "status_bot": "active"\n }\n}'
-global.wait = 'SYSTEM X'
-global.botname = 'System X'
-global.textbot = `SystemX`
-global.listo = 'Resultado con exito'
-global.namechannel = '【 SYSTEM X 】'
+global.author = '{\n "bot": {\n   "name": "𝐒𝐘𝐒𝐓𝐄𝐌 𝐗",\n     "author": "𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑 𝐗",\n   "status_bot": "active"\n }\n}'
+global.wait = '𝐒𝐘𝐒𝐓𝐄𝐌 𝐗'
+global.botname = '𝐒𝐘𝐒𝐓𝐄𝐌 𝐗'
+global.textbot = `𝐒𝐘𝐒𝐓𝐄𝐌 𝐗`
+global.listo = '𝑹𝒆𝒔𝒖𝒍𝒕𝒂𝒅𝒐 𝒄𝒐𝒏 𝒆𝒙𝒊𝒕𝒐!'
+global.namechannel = '【 𝐒𝐘𝐒𝐓𝐄𝐌 𝐗 】'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
@@ -39,8 +39,8 @@ global.miniurl = fs.readFileSync('./storage/img/miniurl.jpg')
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.group = 'https://chat.whatsapp.com/J1R402WH1N0Hdl3S0NDEYu'
-global.canal = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'
+global.group = 'https://whatsapp.com/channel/0029VajUEsCB4hdNTg04zh1u'
+global.canal = 'https://whatsapp.com/channel/0029VajUEsCB4hdNTg04zh1u'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
