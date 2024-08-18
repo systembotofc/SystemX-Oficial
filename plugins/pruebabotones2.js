@@ -15,8 +15,8 @@ handler.handle = async (message) => {
     if (handler.command.includes(command)) {
         // Responder con diferentes mensajes según el comando
         switch (command) {
-            case 'listas':
-            case 'list':
+            case 'listas2':
+            case 'list2':
                 // Enviar un mensaje con una lista
                 await message.reply('Aquí tienes la lista de comandos disponibles:\n1. Comando 1\n2. Comando 2\n3. Comando 3');
                 break;
