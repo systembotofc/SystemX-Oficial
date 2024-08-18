@@ -17,7 +17,7 @@ let tags = {
   'img': 'IMÁGENES',
   'tools': 'HERRAMIENTAS',
   'fun': 'DIVERCIÓN',
-  'audio': 'EFECTO DE AUDIOS', 
+  'audio': 'EFECTO DE AUDIOS',
   'sticker': 'STICKERS',
   'nsfw': 'NSFW',
   'owner': 'CREADOR',
@@ -49,17 +49,13 @@ const defaultMenu = {
 }
 
 let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
- try {
-    let package = JSON.parse(await promises.readFile(join(dirname, '../package.json')).catch( => ({}))) || {}
+  try {
+    let package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(() => ({}))) || {}
     let { exp, star, level } = global.db.data.users[m.sender]
     let { min, xp, max } = xpRange(level, global.multiplier)
     let name = await conn.getName(m.sender)
     let d = new Date(new Date + 3600000)
     let locale = 'es'
-    // d.getTimeZoneOffset()
-    // Offset -420 is 18.00
-    // Offset    0 is  0.00
-    // Offset  420 is  7.00
     let weton = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'][Math.floor(d / 84600000) % 5]
     let week = d.toLocaleDateString(locale, { weekday: 'long' })
     let date = d.toLocaleDateString(locale, {
@@ -92,7 +88,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
     let help = Object.values(global.plugins).filter(plugin => !plugin.disabled).map(plugin => {
       return {
-        help: Array.isArray(plugin.tags) ? plugin.help : [plugin.help],
+        help: Array.isArray(plugin.help) ? plugin.help : [plugin.help],
         tags: Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags],
         prefix: 'customPrefix' in plugin,
         star: plugin.star,
@@ -134,57 +130,42 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       taguser: '@' + m.sender.split("@s.whatsapp.net")[0],
       wasp: '@0',
       me: conn.getName(conn.user.jid),
-      npmname: _package.name,
-      version: _package.version,
-      npmdesc: _package.description,
-      npmmain: _package.main,
-      author: _package.author.name,
-      license: _package.license,
+      npmname: package.name,
+      version: package.version,
+      npmdesc: package.description,
+      npmmain: package.main,
+      author: package.author.name,
+      license: package.license,
       exp: exp - min,
       maxexp: xp,
       totalexp: exp,
       xp4levelup: max - exp,
-      github: _package.homepage ? _package.homepage.url || _package.homepage : '[unknown github url]',
+      github: package.homepage ? package.homepage.url || package.homepage : '[unknown github url]',
       level, star, name, weton, week, date, dateIslamic, time, totalreg, rtotalreg,
       readmore: readMore
     }
-    text = text.replace(new RegExp(%(${Object.keys(replace).sort((a, b) => b.length - a.length).join|}), 'g'), (_, name) => '' + replace[name])
+    text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join('|')})`, 'g'), (_, name) => '' + replace[name])
     
-    let pp = 'https://th.bing.com/th/id/OIG3.cLOJAQj8neUVXa2OXGEU?w=270&h=270&c=6&r=0&o=5&pid=ImgGn'
-    let pp2 = 'https://th.bing.com/th/id/OIG3.cLOJAQj8neUVXa2OXGEU?w=270&h=270&c=6&r=0&o=5&pid=ImgGn'
-    let pp3 = 'https://th.bing.com/th/id/OIG3.cLOJAQj8neUVXa2OXGEU?w=270&h=270&c=6&r=0&o=5&pid=ImgGn'
-    let pp4 = 'https://th.bing.com/th/id/OIG3.cLOJAQj8neUVXa2OXGEU?w=270&h=270&c=6&r=0&o=5&pid=ImgGn'
-    m.react('✅')
-   
-  //  conn.sendMessage(m.chat, { video: { url: [pp, pp2, pp3, pp4].getRandom() }, gifPlayback: true, caption: text.trim(), mentions: [m.sender] }, { quoted: m })
-let listSections = []    
-listSections.push({
-title: '',
-rows: [{ header: "📚ＭＥＮＵ ＣＯＭＰＬＥＴＯ", title: "", id: .allmenu, description: 𝙼𝚞𝚎𝚜𝚝𝚛𝚊𝚖𝚎 𝚝𝚘𝚍𝚘𝚜 𝚕𝚘𝚜 𝚌𝚘𝚖𝚊𝚗𝚍𝚘𝚜 𝚍𝚎 𝙼𝚒𝚣𝚞𝚔𝚒 | 𝙱𝚘𝚝\n }, { header: "🤖ＳＵＤ ＢＯＴ", title: "", id: .serbot --code, description: 𝚀𝚞𝚒𝚎𝚛𝚘 𝚌𝚘𝚗𝚟𝚎𝚛𝚝𝚒𝚛𝚖𝚎 𝚎𝚗 𝚂𝚞𝚍𝙱𝚘𝚝 𝚍𝚎 𝙼𝚒𝚣𝚞𝚔𝚒 | 𝙱𝚘𝚝\n },
-{ header: "ＬＩＳＴＡＳ🇵🇪", title: "", id: .ejemplo🇵🇪, description: 𝙼𝚞𝚎𝚜𝚝𝚛𝚊𝚖𝚎 𝚎𝚓𝚎𝚖𝚙𝚕𝚘 𝚍𝚎𝚕 𝚌𝚘𝚖𝚊𝚗𝚍𝚘 𝚙𝚊𝚛𝚊 𝚟𝚎𝚛 𝚝𝚘𝚍𝚊𝚜 𝚕𝚊𝚜 𝚕𝚒𝚜𝚝𝚊𝚜 𝚌𝚘𝚗 𝚎𝚕 𝚑𝚘𝚛𝚊𝚛𝚒𝚘 𝚍𝚎 𝙿𝚎𝚛ú.\n },
-{ header: "ＬＩＳＴＡＳ🇨🇱", title: "", id: .ejemplo🇨🇱, description: 𝙼𝚞𝚎𝚜𝚝𝚛𝚊𝚖𝚎 𝚎𝚓𝚎𝚖𝚙𝚕𝚘 𝚍𝚎𝚕 𝚌𝚘𝚖𝚊𝚗𝚍𝚘 𝚙𝚊𝚛𝚊 𝚟𝚎𝚛 𝚝𝚘𝚍𝚊𝚜 𝚕𝚊𝚜 𝚕𝚒𝚜𝚝𝚊𝚜 𝚌𝚘𝚗 𝚎𝚕 𝚑𝚘𝚛𝚊𝚛𝚒𝚘 𝚍𝚎 𝙲𝚑𝚒𝚕𝚎.\n },
-{ header: "ＬＩＳＴＡＳ🇦🇷", title: "", id: .ejemplo🇦🇷, description: 𝙼𝚞𝚎𝚜𝚝𝚛𝚊𝚖𝚎 𝚎𝚓𝚎𝚖𝚙𝚕𝚘 𝚍𝚎𝚕 𝚌𝚘𝚖𝚊𝚗𝚍𝚘 𝚙𝚊𝚛𝚊 𝚟𝚎𝚛 𝚝𝚘𝚍𝚊𝚜 𝚕𝚊𝚜 𝚕𝚒𝚜𝚝𝚊𝚜 𝚌𝚘𝚗 𝚎𝚕 𝚑𝚘𝚛𝚊𝚛𝚒𝚘 𝚍𝚎 𝙰𝚛𝚐𝚎𝚗𝚝𝚒𝚗𝚊. }
-]})
-await conn.sendList(m.chat, '*\╭━〔 𝐎𝐏𝐂𝐈𝐎𝐍𝐄𝐒 | 𝐋𝐈𝐒𝐓𝐀𝐒 〕━╮\*\n┃➔ 👑𝘿𝙚𝙫𝙚𝙡𝙤𝙥𝙚𝙧: Benjamin\n┃➔ ☑𝙑𝙚𝙧𝙨𝙞𝙤𝙣: 1.0.0\n╰━━━━━━━━━━━━━╯', null, 𝐎𝐏𝐂𝐈𝐎𝐍𝐄𝐒 | 𝐋𝐈𝐒𝐓𝐀𝐒, listSections, { mentions: [m.sender]}, {quoted: m})
+    let listSections = []    
+    listSections.push({
+      title: '',
+      rows: [
+        { header: "📚 MENU COMPLETO", title: "", id: '.allmenu', description: 'Muestra todos los comandos del bot.' },
+        { header: "🤖 SUD BOT", title: "", id: '.serbot', description: 'Convierte en SudBot.' },
+        { header: "LISTAS🇵🇪", title: "", id: '.ejemplo🇵🇪', description: 'Ejemplo de comando para Perú.' },
+        { header: "LISTAS🇨🇱", title: "", id: '.ejemplo🇨🇱', description: 'Ejemplo de comando para Chile.' },
+        { header: "LISTAS🇦🇷", title: "", id: '.ejemplo🇦🇷', description: 'Ejemplo de comando para Argentina.' }
+      ]
+    })
+    
+    await conn.sendList(m.chat, '*\╭━〔 OPCIONES | LISTAS 〕━╮\*\n┃➔ 👑 Desarrollador: Benjamin\n┃➔ ☑ Versión: 1.0.0\n╰━━━━━━━━━━━━━╯', null, 'OPCIONES | LISTAS', listSections, { mentions: [m.sender] }, { quoted: m })
+    
   } catch (e) {
-    conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.\n\n' + e, m)
-    throw e
+    conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.\n' + e, m)
   }
 }
-
-handler.help = ['listas']
-handler.tags = ['listas']
-handler.command = ['listas', 'listas', 'listas'] 
-handler.register = true 
+handler.help = ['menu4', 'help4']
+handler.tags = ['main4']
+handler.command = /^(menu4|help4)$/i
+handler.exp = 0
 export default handler
-
-
-const more = String.fromCharCode(8206)
-const readMore = more.repeat(4001)
-
-function clockString(ms) {
-  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
-  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
-  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
-  return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
-}
