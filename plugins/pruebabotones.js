@@ -145,27 +145,26 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join('|')})`, 'g'), (_, name) => '' + replace[name])
-    
-    let listSections = []    
+
+    let listSections = []
     listSections.push({
       title: '',
       rows: [
-        { header: "📚 MENU COMPLETO", title: "", id: '.allmenu', description: 'Muestra todos los comandos del bot.' },
-        { header: "🤖 SUD BOT", title: "", id: '.serbot', description: 'Convierte en SudBot.' },
-        { header: "LISTAS🇵🇪", title: "", id: '.ejemplo🇵🇪', description: 'Ejemplo de comando para Perú.' },
-        { header: "LISTAS🇨🇱", title: "", id: '.ejemplo🇨🇱', description: 'Ejemplo de comando para Chile.' },
-        { header: "LISTAS🇦🇷", title: "", id: '.ejemplo🇦🇷', description: 'Ejemplo de comando para Argentina.' }
+        { header: "📚 MENU COMPLETO", title: "", id: '.allmenu', description: 'Muestra todos los comandos disponibles.' },
+        { header: "🤖 SUB BOTS", title: "", id: '.serbot', description: 'Convertir a SudBot.' },
+        { header: "LISTAS 🇵🇪", title: "", id: '.example_pe', description: 'Ejemplo de comandos para Perú.' },
+        { header: "LISTAS 🇨🇱", title: "", id: '.example_cl', description: 'Ejemplo de comandos para Chile.' },
+        { header: "LISTAS 🇦🇷", title: "", id: '.example_ar', description: 'Ejemplo de comandos para Argentina.' }
       ]
     })
-    
-    await conn.sendList(m.chat, '*\╭━〔 OPCIONES | LISTAS 〕━╮\*\n┃➔ 👑 Desarrollador: Benjamin\n┃➔ ☑ Versión: 1.0.0\n╰━━━━━━━━━━━━━╯', null, 'OPCIONES | LISTAS', listSections, { mentions: [m.sender] }, { quoted: m })
-    
+
+    await conn.sendList(m.chat, text, 'Menu', 'Selecciona una opción:', listSections, m)
   } catch (e) {
-    conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.\n' + e, m)
+    console.error(e)
+    await conn.reply(m.chat, 'Ocurrió un error al procesar el comando.', m)
   }
 }
-handler.help = ['menu4', 'help4']
-handler.tags = ['main4']
-handler.command = /^(menu4|help4)$/i
-handler.exp = 0
+
+handler.command = ['botoness']
+
 export default handler
